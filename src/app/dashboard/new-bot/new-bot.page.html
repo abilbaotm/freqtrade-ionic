@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>new-bot</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Base url</ion-label>
+    <ion-input placeholder="http://123.123.123.123:8080" [(ngModel)]="formBaseUrl" [disabled]="allowSave"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Note</ion-label>
+    <ion-input placeholder="(Optional)" [(ngModel)]="formNote" [disabled]="allowSave"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Username</ion-label>
+    <ion-input [(ngModel)]="formUsername" [disabled]="allowSave"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input [(ngModel)]="formPassword" [disabled]="allowSave"></ion-input>
+  </ion-item>
+  <ng-container>
+    <ion-button (click)="testBot()">Test</ion-button> {{testResult}}
+  </ng-container><br>
+  <ng-container>
+    <ion-button (click)="saveBot()" [disabled]="!allowSave">Save</ion-button>
+  </ng-container>
+
+</ion-content>

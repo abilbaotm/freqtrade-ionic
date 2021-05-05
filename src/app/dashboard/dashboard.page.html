@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button [routerLink]="['new-bot']">createboot</ion-button>
+
+  <ion-card *ngFor="let bot of bots">
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label><ng-container *ngIf="bot.note">{{bot.note}}</ng-container><ng-container *ngIf="!bot.note">{{bot.id}}</ng-container></ion-label>
+      <ion-button fill="outline" slot="end" [routerLink]="['/','bot', bot.id]">Connect</ion-button>
+      <ion-button fill="outline" color="danger" slot="end" [routerLink]="['/','bot', bot.id, 'edit']">Edit</ion-button>
+    </ion-item>
+
+    <ion-card-content>
+      {{bot.basePath}}<br>
+      <ng-container *ngIf="bot.status">
+        Heartbeat: {{bot.status.ping}} <ng-container *ngIf="bot.status.version">({{bot.status.version.version}})</ng-container><br>
+        <ng-container *ngIf="bot.status.count">
+          Open trades: {{bot.status.count.current}}/{{bot.status.count.max}} (Total stake: {{bot.status.count.total_stake}})<br>
+        </ng-container>
+        <ng-container *ngIf="bot.status.balances">
+          Estimated balance: {{bot.status.balances.value}} {{bot.status.balances.symbol}} ({{bot.status.balances.total}} {{bot.status.balances.stake}}) <br>
+        </ng-container>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
